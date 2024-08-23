@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { ScrollControls, Scroll, SoftShadows } from '@react-three/drei';
 
 import Pages from './pages';
+import HomeHtml from './home';
 
 export const config = {
     sections: ["home", "skills", "projects", "contact"],
@@ -18,11 +19,12 @@ function Home() {
 
                 <fog attach="fog" args={["#f5f3ee", 10, 50]} />
 
-              
-
-                <ScrollControls pages={config.sections.length}>                    
+                <ScrollControls pages={0}>                    
                     <Scroll>
                         <Pages />
+                    </Scroll>
+                    <Scroll html>
+                        <HomeHtml />
                     </Scroll>
                 </ScrollControls>
                 

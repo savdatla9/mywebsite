@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-
+import * as THREE from 'three';
 import { useThree } from "@react-three/fiber";
-import { Environment, Float, Text3D, useIntersect, MeshWobbleMaterial, useTexture, useGLTF, OrbitControls } from "@react-three/drei";
-
+import { Environment, Float, Text3D, useIntersect, useTexture, useGLTF, Center, MeshWobbleMaterial } from "@react-three/drei";
+// import { OrbitControls } from '@react-three/drei';
 
 export const SectionTitle = ({ color, children, ...props }) => {
     return (
@@ -94,41 +94,46 @@ const Pages = () => {
         <>
             <Environment preset="sunset" />
 
-            {/* <OrbitControls enableRotate={true} /> */}
-
             <pointLight color="white" position={[8, -25, 5]} intensity={20} />
                 
-            <pointLight color='silver' position={[0, -height * 2.25, 5]} intensity={10} />
+            <pointLight color='grey' position={[0, -height * 2.25, 5]} intensity={10} />
 
             <Item position={[0, 0, 0]}>
-                <Float intensity={1.5}>
-                    <group>
-                        <mesh scale={0.25} position={[-0.5, 0.65, 0]}>
-                            <octahedronGeometry />
-                            <MeshWobbleMaterial wireframe color={'#ffb900'} />
-                        </mesh>
+                <Center>
+                    <Float intensity={1.5}>
+                        <group scale={width/height}>
+                            <mesh scale={5} position={[-0.75, 0.5, -0.85]}>
+                                <planeGeometry args={[0.7, 0.65, 7.5, 7.5]} />
+                                <meshToonMaterial wireframe color={'lawngreen'} side={THREE.DoubleSide} />
+                            </mesh>
 
-                        <UnrealEngineLogo scale={0.001} position={[-0.32, 0.2, -0.48]} rotation={[0, 0, 0]} />
+                            <mesh position={[-0.75, -0.65, 0]} scale={[3, 1, 1]}>
+                                <boxGeometry args={[1, 0.65, 1, 10, 10, 10]} />
+                                <meshPhysicalMaterial color={'darksalmon'} wireframe />
+                            </mesh>
 
-                        <ReactLogo scale={0.15} position={[-0.25, -0.1, -0.4]} rotation={[0, 0, Math.PI/2]} />
+                            <UnrealEngineLogo scale={0.001} position={[-0.32, 0.2, -0.48]} rotation={[0, 0, 0]} />
 
-                        <Screen position={[-0.5, -0.513, 0]} scale={0.4} rotation={[0, 0, 0]} />
-                    
-                        <Mobile position={[0.35, -0.15, 0]} scale={0.15} rotation={[0, 0, 0]} />
+                            <ReactLogo scale={0.15} position={[-0.25, -0.1, -0.4]} rotation={[0, 0, Math.PI/2]} />
 
-                        <VRSet position={[-1.4, -0.35, 0]} scale={0.05} rotation={[0, -Math.PI/2, 0]} />
+                            <Screen position={[-0.5, -0.513, 0]} scale={0.4} rotation={[0, 0, 0]} />
+                        
+                            <Mobile position={[0.35, -0.313, 0]} scale={0.15} rotation={[-Math.PI/2, 0, 0]} />
 
-                        <BackNode position={[-0.85, 0.15, -0.4]} scale={0.15} rotation={[0, 0, 0]} />
-                    </group>
-                </Float>
+                            <VRSet position={[-1.5, -0.35, 0]} scale={0.05} rotation={[0, -Math.PI/2, 0]} />
 
-                <mesh position={[width/3, 0.8, 0.15]} scale={0.45}>
+                            <BackNode position={[-0.85, 0.15, -0.4]} scale={0.15} rotation={[0, 0, 0]} />
+                        </group>
+                    </Float>
+                </Center>
+                
+                <mesh position={[width/2.5, height/7.5, 0]} scale={width/7}>
                     <circleGeometry />
-                    <MeshWobbleMaterial color="lightyellow" map={emoji}  />
+                    <MeshWobbleMaterial color="lightgray" map={emoji} side={THREE.DoubleSide} speed={2.5} factor={0.1} />
                 </mesh>
             </Item>
                     
-            <Item position={[-width / 5, -height * 0.985, -2]}>
+            {/* <Item position={[-width / 5, -height * 0.985, -2]}>
                 <SectionTitle position-x={0.5}>SKILLS</SectionTitle>
             </Item>
 
@@ -138,7 +143,7 @@ const Pages = () => {
 
             <Item position={[-1.85, -height * 3, -2]}>
                 <SectionTitle position-x={0} color={'dodgerblue'} rotation={[0, 0.15, 0]}>CONTACT</SectionTitle>
-            </Item>
+            </Item> */}
         </>
     );
 };

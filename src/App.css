@@ -1,18 +1,3 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-} */
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -22,15 +7,405 @@
   color: white;
 }
 
-.App-link {
+link {
   color: #61dafb;
 }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+  color: #61dafb;
+}
+
+.header{
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  z-index: 10000;
+  /* -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25); */
+  transition: all 5ms ease-in-out;
+}
+
+.button_9 {
+  align-items: center;
+  background: #f5f5fa;
+  border: 0;
+  border-radius: 100px;
+  box-shadow: -10px -10px 30px 0 #fff, 10px 10px 30px 0 #1d0dca17;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex; 
+  justify-content: center;
+  line-height: 1.5rem;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  transition: .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+  width: 35px;
+  height: 35px;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+.button_9 div {
+  color: #242424 !important;
+  font-size: 18px !important;
+}
+
+.button_9:hover {
+  background: #f8f8ff;
+  box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+}
+        
+.theme {
+  align-items: center;
+  background: #ffffff;
+  border: 0;
+  border-radius: 100px;
+  box-shadow: -10px -10px 30px 0 #cccccc65, 10px 10px 30px 0 #cccccc55;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex; 
+  justify-content: center;
+  line-height: 1.5rem;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  transition: .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+  width: 35px;
+  height: 35px;
+}
+
+.yin-yang {
+  width: 50px;
+  box-sizing: content-box;
+  height: 25px;
+  background: #fff;
+  border-color: #333;
+  border-style: solid;
+  border-width: 2px 2px 26px 2px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.yin-yang:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: #fff;
+  border: 9.5px solid #333;
+  border-radius: 100%;
+  width: 6.5px;
+  height: 6.5px;
+  box-sizing: content-box;
+}
+
+.yin-yang:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #333;
+  border: 9.5px solid #fff;
+  border-radius: 100%;
+  width: 6.5px;
+  height: 6.5px;
+  box-sizing: content-box;
+}
+
+.infinity {
+  --size: 25px;
+  --thickness: calc(var(--size) * 0.2);
+
+  position: relative;
+  width: var(--size);
+  height: calc(var(--size) * 0.47);
+  box-sizing: content-box;
+}
+
+.infinity:before,
+.infinity:after {
+  content: "";
+  box-sizing: content-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--size) * 0.28);
+  height: calc(var(--size) * 0.28);
+  border: var(--thickness) solid #daa520;
+  border-radius: 50px 50px 0 50px;
+  transform: rotate(-45deg);
+}
+
+.infinity:after {
+  left: calc(44% + var(--thickness));
+  right: 0;
+  border-radius: 50px 50px 50px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-wrapper-54 input[type="checkbox"] {
+  visibility: hidden;
+  display: none;
+}
+
+.checkbox-wrapper-54 *,
+.checkbox-wrapper-54 ::after,
+.checkbox-wrapper-54 ::before {
+  box-sizing: border-box;
+}
+
+/* The switch - the box around the slider */
+.checkbox-wrapper-54 .switch {
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  /* size of sliding icon -- sun and moon */
+  --size-of-icon: 1.4em;
+  /* it is like a inline-padding of switch */
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+  display: inline-block;
+}
+
+/* The slider */
+.checkbox-wrapper-54 .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.checkbox-wrapper-54 .slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon,1.4em);
+  width: var(--size-of-icon,1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset,0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg,#ff0080,#ff8c00 70%);
+  ;
+  transition: .4s;
+}
+
+.checkbox-wrapper-54 input:checked + .slider {
+  background-color: #303136;
+}
+
+.checkbox-wrapper-54 input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
+  background: #303136;
+  /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+/* .typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  /* border-right: .15em double lightslategray; The typwriter cursor */
+  /* white-space: nowrap; Keeps the content on a single line */
+  /* margin: 0 auto; Gives that scrolling effect as the typing happens */
+  /* letter-spacing: .015em; Adjust as needed */
+  /* animation:  */
+    /* typing 3.5s steps(40, end), */
+    /* blink-caret .75s step-end infinite; */
+/* } */
+
+/* The typing effect */
+/* @keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 } */
+
+/* The typewriter cursor effect */
+/* @keyframes blink-caret { 
+  from, to { border-color: transparent }
+  50% { border-color: lightslategray }
+} */
+
+.typing {
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid lightslategrey;
+  width: max-content;
+  font-size: 14px; 
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+    
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+.btn_user {
+  padding: 9px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn_user:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 100%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.btn_user:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 100%;
+}
+
+.social_links {
+  line-height: 40px;
+  background: rgba(0, 0, 0, .3);
+  width: max-content;
+  display: block;
+  display: flex;
+  z-index: 2;
+  gap: 0.8rem;
+  border-radius: 3rem;
+  margin-top: 3.5vh;
+}
+
+.social_links a {
+  background: transparent;
+  padding: 0.9rem;
+  border-radius: 50%;
+  display: flex;
+  font-size: 2rem;
+}
+
+.social_links a img {
+  width: 45px;
+  height: 45px;
+}
+
+.footer_input{
+  background-color: #f4f4f5 !important;
+  padding: 5px !important;
+  height: 35px !important;
+  border: 0px solid !important;
+  border-radius: 5px !important;
+  color: #222 !important;
+}
+
+.footer_textarea{
+  background-color: #f4f4f5 !important;
+  padding: 5px !important;
+  border: 0px solid !important;
+  border-radius: 5px !important;
+  color: #222 !important;
+}
+
+.footer_btn {
+  appearance: button;
+  background-color: transparent;
+  border-radius: .75rem;
+  box-sizing: border-box;
+  column-gap: 1rem;
+  cursor: pointer;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  outline: 2px solid transparent;
+  padding: 0.5rem 0.75rem;
+  text-transform: none;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: -6px 8px 10px rgba(81,41,10,0.1),0px 2px 2px rgba(81,41,10,0.2);
+  width: 25vw; 
+}
+
+.footer_btn:active {
+  box-shadow: -1px 2px 5px rgba(81,41,10,0.15),0px 1px 1px rgba(81,41,10,0.15);
+  transform: translateY(0.125rem);
+}
+
+.footer_btn:focus {
+  box-shadow: rgba(72, 35, 7, .46) 0 0 0 4px, -6px 8px 10px rgba(81,41,10,0.1), 0px 2px 2px rgba(81,41,10,0.2);
+}
+
+/* Parent background */
+/* #F5F5FA */
