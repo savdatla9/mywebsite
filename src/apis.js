@@ -1,6 +1,18 @@
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
+
+// https://firebase.google.com/docs/web/setup#available-libraries
+
 export const DBS = '';
 
-export const GALLERYAPI1 = 'https://unsplash.com/developers';
+export const GALLERYAPI = 'https://api.unsplash.com/photos?page=';
+export const GA_APP_ID = '638586';
+export const GA_AKEY = 'G4ArQlEDeIPLnmXRn8450doj-cd_odzIeO7xDP5h6s8';
+export const GA_SKEY = 'FO61lV3M_X0iuWEEgZ3BGGUarDhi9yc6XNqiNACg-50';
+export const GA_URI = 'urn:ietf:wg:oauth:2.0:oob';
+export const GA_URI_LOCAL = 'urn:ietf:wg:oauth:2.0:oob';
+
 // export const GALLERYAPI2 = 'https://developers.gettyimages.com';
 
 export const WEATHERAPI = 'https://openweathermap.org';
@@ -14,3 +26,19 @@ export const QUOTESAPI = 'https://zenquotes.io';
 
 export const JOKEAPI = 'https://dadjokes.io';
 export const JOKETYPES = 'https://dadjokes.io/joke/types';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBQJ3D22gIDyzFHi_xJoGMhLc0ylMCXvp0",
+    authDomain: "portfolio-2d2aa.firebaseapp.com",
+    databaseURL: "https://portfolio-2d2aa-default-rtdb.firebaseio.com",
+    projectId: "portfolio-2d2aa",
+    storageBucket: "portfolio-2d2aa.appspot.com",
+    messagingSenderId: "605508864160",
+    appId: "1:605508864160:web:c71bbda7599bcce190a1c5",
+    measurementId: "G-7WMZNR98RS"
+};
+
+export const app = initializeApp(firebaseConfig);
+
+export const analytics = getAnalytics(app);
+export const storeData = getStorage(app);
