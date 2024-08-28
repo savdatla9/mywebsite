@@ -156,6 +156,11 @@ a {
   transform: rotate(45deg);
 }
 
+.pagination {
+  --bs-pagination-color: #0d6efd;
+  --bs-pagination-bg: transparent;
+}
+
 .checkbox-wrapper-54 input[type="checkbox"] {
   visibility: hidden;
   display: none;

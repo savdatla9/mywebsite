@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -7,6 +6,7 @@ import { getStorage } from "firebase/storage";
 export const DBS = '';
 
 export const GALLERYAPI = 'https://api.unsplash.com/photos?page=';
+export const SEARCHGALLERYAPI = 'https://api.unsplash.com/search/photos?page=';
 export const GA_APP_ID = '638586';
 export const GA_AKEY = 'G4ArQlEDeIPLnmXRn8450doj-cd_odzIeO7xDP5h6s8';
 export const GA_SKEY = 'FO61lV3M_X0iuWEEgZ3BGGUarDhi9yc6XNqiNACg-50';
@@ -40,5 +40,5 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 
-export const analytics = getAnalytics(app);
+// export const analytics = getAnalytics(app);
 export const storeData = getStorage(app);

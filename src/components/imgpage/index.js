@@ -1,15 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
+import { Container, Row, Col, Card, Form, Button, Pagination } from 'react-bootstrap';
 
 import { BsDownload } from "react-icons/bs";
+import { MdImageSearch } from "react-icons/md";
 
-import { GALLERYAPI, GA_AKEY } from '../../apis';
+import { GALLERYAPI, SEARCHGALLERYAPI, GA_AKEY } from '../../apis';
 
 const ImgPage = () => {
     const [imgList, setIList] = useState([]);
+    const [loadPage, setLPage] = useState(1);
+    const [last, setLast] = useState(200);
+    const [perPage, setPPage] = useState(9);
+    const [search, setSearch] = useState('');
+
+// `https://api.unsplash.com/search/photos?page=${loadPage}&query=${search}&client_id=${}&per_page=`
+
+    async function searchImgs() {
+        if(search.length){
+            setIList([]); setLPage(1);
+
+            const url = `${SEARCHGALLERYAPI}${loadPage}&query=${search}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+    
+            try {
+                const response = await fetch(url);
+    
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                };
+            
+                const res = await response.json();
+    
+                setIList(res.results); setLast(res.total_pages);
+            } catch (error) {
+                console.error(error.message);
+            };
+        }else{
+            getImgs();
+        };  
+    };
+
     async function getImgs() {
-        const url = `${GALLERYAPI}1&per_page=25&order_by=popular&client_id=${GA_AKEY}`
+        const url = `${GALLERYAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+
+        setSearch(''); setLPage(1);
 
         try {
             const response = await fetch(url);
@@ -20,9 +53,33 @@ const ImgPage = () => {
         
             const res = await response.json();
 
-            console.log(res); setIList(res);
+            setIList(res); setLast(200);
         } catch (error) {
             console.error(error.message);
+        };
+    };
+
+    async function loadMore(page) {
+        if(page>=1){
+            const url = `${GALLERYAPI}${page}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+
+            try {
+                const response = await fetch(url);
+    
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                };
+            
+                const res = await response.json();
+    
+                setIList(res);
+            } catch (error) {
+                console.error(error.message);
+            };
+
+            setLPage(page);
+        }else{
+            setLPage(1);
         };
     };
 
@@ -43,18 +100,38 @@ const ImgPage = () => {
     }, []);
     
     return (
-        <div style={{width: '100%'}}>
-            <h2 style={{textAlign: 'center'}}>Gallery</h2>
+        <div style={{width: '100%', textAlign: 'center'}}>
+            <h1 style={{textDecorationLine: 'underline'}}>Gallery</h1>
+
+            <Form style={{ padding: '1.5%', display: 'flex', justifyContent: 'center' }}>
+                <Row xs={6}>
+                    <Col style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                        <Form.Control
+                            value={search} placeholder='Search Category' 
+                            onChange={(e) => setSearch(e.target.value)}
+                            style={{color: 'dodgerblue', width: '250px', marginRight: '7.5px', fontSize: '20px' }} 
+                        />
+                    
+                        <Button    
+                            variant="outline-primary" outline onClick={() => searchImgs()}
+                            style={{display: 'flex', justifyContent: 'space-between', fontSize: 20}}
+                        >
+                            Search&nbsp;<MdImageSearch style={{fontSize: '27px'}} /> 
+                        </Button>
+                    </Col>
+                </Row>
+            </Form>
 
             <Container>
                 <Row xs={12} sm={4} md={3}>
                     {imgList.length>=1 && imgList.map((it) => 
                         <Col key={it.id}>
-                            <Card style={{margin: '3.5px', backgroundColor: 'transparent', color: '#fff', borderColor: '#ccc'}}>
-                                <Card.Img variant="top" src={it.urls.small} style={{width: '100%', height: '250px'}} />
+                            <Card style={{margin: '3.5px', backgroundColor: 'transparent', color: '#fff', border: '2px solid #ccc', marginBottom: '2vh'}}>
+                                <Card.Img variant="top" src={it.urls.small ? it.urls.small : null} style={{width: '100%', height: '250px'}} />
 
-                                <Card.Body style={{padding: '5px'}}>
-                                    <Card.Title style={{fontSize: '25px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'
+                                <Card.Body style={{padding: '5px', border: '1px dotted #ccc'}}>
+                                    <Card.Title style={{
+                                        fontSize: '25px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'
                                     }}>
                                         <div>{it.user.name}</div>
 
@@ -73,6 +150,26 @@ const ImgPage = () => {
                         </Col>
                     )}
                 </Row>
+
+                {search==='' && <Col style={{display: 'flex', justifyContent: 'center', marginTop: '2.5%'}}>
+                    <Pagination size='lg' style={{marginRight: '5px'}}>
+                        <Pagination.First onClick={() => loadMore(1)} />
+                        <Pagination.Prev onClick={() => loadMore(loadPage-1)} />
+                        <Pagination.Item>{loadPage}</Pagination.Item>
+                        <Pagination.Next onClick={() => loadMore(loadPage+1)} />
+                        <Pagination.Last onClick={() => loadMore(last)} />
+                    </Pagination>
+
+                    <Form.Select 
+                        value={perPage} onChange={(e) => {setPPage(e.target.value); getImgs()}}
+                        style={{backgroundColor: 'transparent', color: 'dodgerblue', width: '75px', height: '55px', marginLeft: '5px', fontSize: '20px', textAlign: 'center' }}
+                    >
+                        <option>-</option>
+                        <option value={9}>10</option>
+                        <option value={15}>15</option>
+                        <option value={30}>30</option>
+                    </Form.Select>
+                </Col>}
             </Container>
         </div>
     );

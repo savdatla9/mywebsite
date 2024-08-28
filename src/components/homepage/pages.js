@@ -97,14 +97,20 @@ const Pages = () => {
 
     function Loader() {
         const { progress } = useProgress();
+
         return (
-          <Html center>
-            <div>
-              <ProgressBar animated striped now={Math.round(progress)} label={`${Math.round(progress)}%`} />
-            </div>
-          </Html>
+            <Html center>
+                <div style={{width: '100vw', height: '100vh'}}>
+                    <ProgressBar 
+                        animated striped 
+                        now={Math.round(progress)} 
+                        label={`${Math.round(progress)}%`} 
+                        style={{height: '25px'}}
+                    />
+                </div>
+            </Html>
         );
-      }
+    };
 
     return (
         <>
@@ -121,12 +127,12 @@ const Pages = () => {
                             <Float intensity={1.5}>
                                 <group scale={width/height}>
                                     <mesh scale={5} position={[-0.75, 0.5, -0.85]}>
-                                        <planeGeometry args={[0.7, 0.65, 7.5, 7.5]} />
-                                        <meshToonMaterial wireframe color={'lawngreen'} side={THREE.DoubleSide} />
+                                        <planeGeometry args={[0.7, 0.65, 10, 10]} />
+                                        <meshPhysicalMaterial wireframe color={'lawngreen'} side={THREE.DoubleSide} />
                                     </mesh>
 
                                     <mesh position={[-0.75, -0.65, 0]} scale={[3, 1, 1]}>
-                                        <boxGeometry args={[1, 0.65, 1, 10, 10, 10]} />
+                                        <boxGeometry args={[1, 0.65, 1, 50, 50, 50]} />
                                         <meshPhysicalMaterial color={'darksalmon'} wireframe />
                                     </mesh>
 
@@ -145,7 +151,7 @@ const Pages = () => {
                             </Float>
                         </Center>
                         
-                        <mesh position={[width/2.5, height/7.5, 0]} scale={width/7}>
+                        <mesh position={[width/3.15, height/6, 0]} scale={width/8}>
                             <circleGeometry />
                             <MeshWobbleMaterial color="lightgray" map={emoji} side={THREE.DoubleSide} speed={2.5} factor={0.1} />
                         </mesh>

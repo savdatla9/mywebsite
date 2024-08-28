@@ -30,6 +30,7 @@
     "react-spring": "^9.7.4",
     "reactstrap": "^9.2.2",
     "three": "^0.163.0",
+    "typed.js": "^2.1.0",
     "use-gesture": "^1.0.0",
     "valtio": "^1.13.2",
     "web-vitals": "^2.1.4"

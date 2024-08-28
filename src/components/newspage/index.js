@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 import { NEWSAPI, APIKEY } from '../../apis';
 
@@ -41,9 +43,9 @@ const NewsPage = () => {
 
     return (
         <div style={{textAlign: 'center'}}>
-            <h2 style={{textDecorationLine: 'underline'}}>News Articles</h2>
+            <h1 style={{textDecorationLine: 'underline'}}>News Articles</h1>
 
-            {newsList.length>=1 && newsList.map((it, idx) => <div key={idx} style={{color: '#ccc', margin: '5px'}}>
+            {newsList.length>=1 && newsList.map((it, idx) => <div key={idx} style={{color: '#ccc', padding: '5px'}}>
                 <div style={{fontWeight: '18px'}}>
                     {it.title}
 
@@ -51,8 +53,13 @@ const NewsPage = () => {
                         {getDateChng(it.publishedAt)}
                     </span>
 
-                    <div style={{marginBottom: '10px'}}>
-                        <a href={it.url} target='blank' style={{textDecorationLine: 'none', border: '1px solid #61dafb', borderBottomWidth: '2px', padding: '5px', borderRadius: '5px'}}>More info</a>
+                    <div style={{padding: '5px'}}>
+                        <Button 
+                            variant="outline-primary" size="lg"
+                            outline href={it.url} target='blank'
+                        >
+                            More Info
+                        </Button>
                     </div>
                 </div>
 
