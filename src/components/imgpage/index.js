@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Container, Row, Col, Card, Form, Button, Pagination } from 'react-bootstrap';
 
 import { BsDownload } from "react-icons/bs";
 import { MdImageSearch } from "react-icons/md";
 
 import { GALLERYAPI, SEARCHGALLERYAPI, GA_AKEY } from '../../apis';
+
 
 const ImgPage = () => {
     const [imgList, setIList] = useState([]);
@@ -96,7 +98,16 @@ const ImgPage = () => {
     };
 
     useEffect(() => {
-        getImgs();
+        const url = `${GALLERYAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+
+        setSearch(''); setLPage(1);
+        
+        axios.get(url)
+        .then((res) => {
+            setIList(res.data); setLast(200);
+        }).catch((err) => {
+            console.log(err);
+        }) 
     }, []);
     
     return (
@@ -126,7 +137,7 @@ const ImgPage = () => {
                 <Row xs={12} sm={4} md={3}>
                     {imgList.length>=1 && imgList.map((it) => 
                         <Col key={it.id}>
-                            <Card style={{margin: '3.5px', backgroundColor: 'transparent', color: '#fff', border: '2px solid #ccc', marginBottom: '2vh'}}>
+                            <Card className='backHigh' style={{margin: '3.5px', backgroundColor: 'transparent', color: '#fff', border: '2px solid #ccc', marginBottom: '2vh'}}>
                                 <Card.Img variant="top" src={it.urls.small ? it.urls.small : null} style={{width: '100%', height: '250px'}} />
 
                                 <Card.Body style={{padding: '5px', border: '1px dotted #ccc'}}>

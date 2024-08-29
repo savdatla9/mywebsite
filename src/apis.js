@@ -15,14 +15,13 @@ export const GA_URI_LOCAL = 'urn:ietf:wg:oauth:2.0:oob';
 
 // export const GALLERYAPI2 = 'https://developers.gettyimages.com';
 
-export const WEATHERAPI = 'https://openweathermap.org';
+export const WEATHERAPI = 'https://api.openweathermap.org/data/2.5/';
+export const WAKEY = '5f5131de6ea80b96d26d5ab1a7754dee';
 
 export const NEWSAPI = 'https://newsapi.org/v2/';
 export const APIKEY = 'apiKey=1895d4f9542643c2a46cd78e536c2b12';
 
 export const BOOKAPI = 'https://developers.google.com/books';
-
-export const QUOTESAPI = 'https://zenquotes.io';
 
 export const JOKEAPI = 'https://dadjokes.io';
 export const JOKETYPES = 'https://dadjokes.io/joke/types';
