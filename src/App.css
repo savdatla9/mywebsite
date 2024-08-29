@@ -156,6 +156,11 @@ a {
   transform: rotate(45deg);
 }
 
+.pagination {
+  --bs-pagination-color: #0d6efd;
+  --bs-pagination-bg: transparent;
+}
+
 .checkbox-wrapper-54 input[type="checkbox"] {
   visibility: hidden;
   display: none;
@@ -409,3 +414,10 @@ a {
 
 /* Parent background */
 /* #F5F5FA */
+.backHigh {
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 7px 29px 0px;
+}
+
+.WHigh {
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+}

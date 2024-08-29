@@ -26,6 +26,15 @@ const SurfaceAR = () => {
         <div>
             <h3 style={{textAlign: 'center'}}>Web AR - (Surface Target)</h3>
 
+            <p>
+                <a 
+                    href="https://developers.google.com/ar/discover/supported-devices"
+                    target='blank' style={{color: 'red', display: hide ? 'block' : 'none'}}
+                >
+                    AR not supported in this device.
+                </a>
+            </p>
+
             <div style={{
                 textAlign: 'center', display: 'flex', 
                 flexDirection: 'column', justifyContent: 'center'
@@ -70,15 +79,6 @@ const SurfaceAR = () => {
                         transform: 'translate3d(-50%, -50%, 0)', zIndex: '100',
                     }}>Load AR Scene</div>
                 </model-viewer>
-
-                <p>
-                    <a 
-                        href="https://developers.google.com/ar/discover/supported-devices"
-                        target='blank' style={{color: 'red', display: hide ? 'block' : 'none'}}
-                    >
-                        AR not supported
-                    </a>
-                </p>
             </div>
         </div>
     );
