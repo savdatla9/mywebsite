@@ -101,17 +101,15 @@ const Pages = () => {
         return (
             <Html>
                 <div style={{
-                    width: '100vw', height: '100vh', 
                     position: 'fixed'
                 }}>
                     <ProgressBar 
                         animated striped 
                         now={Math.round(progress)} 
                         label={`${Math.round(progress)}%`} 
-                        style={{height: '25px', top: '50%', left: '25%'}}
+                        style={{height: '25px', top: '50%'}}
                     />
                 </div>
-        
             </Html>
         );
     };
