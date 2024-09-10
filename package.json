@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ar-js-org/ar.js": "^3.4.5",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@google/model-viewer": "^3.5.0",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.109.2",
@@ -32,6 +33,7 @@
     "react-spring": "^9.7.4",
     "reactstrap": "^9.2.2",
     "three": "^0.163.0",
+    "three-stdlib": "^2.32.2",
     "typed.js": "^2.1.0",
     "use-gesture": "^1.0.0",
     "valtio": "^1.13.2",

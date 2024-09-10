@@ -9,10 +9,9 @@ const HomeHtml = () => {
     const el = useRef(null);
 
     const textArr = [
-      "I'm a React developer. ", 
-      "I'm a Tech Enthusiast. ", 
-      "5+ years in IT Industry. ",
-      `Learning Node JS, MongoDB. ^1000\n Unreal Engine, Unity and Extended Reality. `
+      "I'm a React developer and Tech Enthusiast. ", 
+      "5+ years in IT Industry based in Hyderabad, Telangana, India. ",
+      `Learning Node JS, MongoDB.^1000\n Unreal Engine, Unity and Extended Reality. `
     ];
 
     // let index = 0;

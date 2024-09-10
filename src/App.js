@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PrimeReactProvider } from 'primereact/api';
 
-import Home from './components/homepage/index.js';
+import Home from './components/homepage/index.jsx';
 import Author from './author.js';
 // import Comics from './components/bookpage/index.js';
 import ImgPage from './components/imgpage/index.js';
