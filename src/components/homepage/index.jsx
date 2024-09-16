@@ -4,7 +4,7 @@ import { ScrollControls, Scroll, SoftShadows } from '@react-three/drei';
 
 import Pages from './pages.js';
 import HomeHtml from './home.js';
-import ExportButton from '../others/exporter.jsx';
+// import ExportButton from '../others/exporter.jsx';
 
 export const config = {
     sections: ["home", "skills", "projects", "contact"],

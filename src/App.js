@@ -4,7 +4,7 @@ import { PrimeReactProvider } from 'primereact/api';
 
 import Home from './components/homepage/index.jsx';
 import Author from './author.js';
-// import Comics from './components/bookpage/index.js';
+import Editor from './components/others/editor.js';
 import ImgPage from './components/imgpage/index.js';
 import NewsPage from './components/newspage/index.js';
 import WeatherPage from './components/weatherpage/index.js';
@@ -18,9 +18,9 @@ import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
 
 const router = createBrowserRouter([
   {path: "/", element: (<Home />)},
-  {path: "author", element: (<Author />)},
+  {path: "Author", element: (<Author />)},
   {path: "News", element: (<NewsPage />)},
-  // {path: "Comics", element: (<Comics />)},
+  {path: "Editor", element: (<Editor />)},
   {path: "Crypto", element: (<CryptoIndex />)},
   {path: `Gallery`, element: (<ImgPage />)},
   {path: 'Weather', element: (<WeatherPage />)},

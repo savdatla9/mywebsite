@@ -62,7 +62,7 @@ const WeatherPage = () => {
 
             {typeof wdata.main !== "undefined" ? <div className='WHigh' style={{
                 marginTop: '5.5vh', borderRadius: '20px', 
-                padding: '7.5px', backgroundColor: '#00000025'
+                padding: '7.5px', backgroundColor: '#ffffff25'
             }}>
                 <div style={{paddingTop: '5px', fontSize: '50px', fontWeight: '700'}}>
                     {wdata.main.temp} <sup>o</sup>C
