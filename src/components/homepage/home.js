@@ -69,7 +69,7 @@ const HomeHtml = () => {
                         <SlSocialInstagram style={{color: '#fff', fontSize: '35px'}} />
                     </a>
 
-                    <a href='https://www.instagram.com/d.s.a.varma9/' target='blank'>
+                    <a href='tel: +91 7893000778' target='blank'>
                         <SiWhatsapp style={{color: '#fff', fontSize: '35px'}} />
                     </a>
                 </div>
