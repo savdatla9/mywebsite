@@ -11,7 +11,10 @@ const NewsPage = () => {
         const url = `${NEWSAPI}top-headlines?country=in&${APIKEY}`
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                mode: 'no-cors',
+                method: "get",
+            });
 
             if (!response.ok) {
                 throw new Error(`Response status: ${response.status}`);

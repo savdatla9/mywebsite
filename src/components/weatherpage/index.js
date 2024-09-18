@@ -57,9 +57,13 @@ const WeatherPage = () => {
             </Form>
 
             <div style={{marginTop: '2.5vh', fontSize: '25px'}}>Weather Location</div>
+
             <div style={{marginTop: '0.5vh', fontSize: '35px', fontWeight: '800'}}>{wdata.name}</div>
 
-            {typeof wdata.main !== "undefined" ? <div className='WHigh' style={{marginTop: '5.5vh', borderRadius: '20px', padding: '5px', backgroundColor: '#00000015'}}>
+            {typeof wdata.main !== "undefined" ? <div className='WHigh' style={{
+                marginTop: '5.5vh', borderRadius: '20px', 
+                padding: '7.5px', backgroundColor: '#ffffff25'
+            }}>
                 <div style={{paddingTop: '5px', fontSize: '50px', fontWeight: '700'}}>
                     {wdata.main.temp} <sup>o</sup>C
                 </div>
@@ -73,13 +77,13 @@ const WeatherPage = () => {
  
                 <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly'}}>
                     <div>
-                        <span style={{fontWeight: 'bold', fontSize: '45px'}}>{wdata.wind.speed}</span>
+                        <span style={{fontWeight: 'bold', fontSize: '50px'}}>{wdata.wind.speed}</span>
                         <br /> 
                         <span style={{fontWeight: 'lighter', fontSize: '25px'}}>Wind Speed</span>
                     </div>
 
                     <div>
-                        <span style={{fontWeight: 'bold', fontSize: '45px'}}>{wdata.main.humidity}</span>
+                        <span style={{fontWeight: 'bold', fontSize: '50px'}}>{wdata.main.humidity}</span>
                         <br /> 
                         <span style={{fontWeight: 'lighter', fontSize: '25px'}}>Humid</span>
                     </div>

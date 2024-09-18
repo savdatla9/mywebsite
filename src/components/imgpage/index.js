@@ -14,12 +14,13 @@ const ImgPage = () => {
     const [last, setLast] = useState(200);
     const [perPage, setPPage] = useState(9);
     const [search, setSearch] = useState('');
+    const [loadin, setLoad] = useState(false);
 
 // `https://api.unsplash.com/search/photos?page=${loadPage}&query=${search}&client_id=${}&per_page=`
 
     async function searchImgs() {
         if(search.length){
-            setIList([]); setLPage(1);
+            setIList([]); setLPage(1); setLoad(true);
 
             const url = `${SEARCHGALLERYAPI}${loadPage}&query=${search}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
     
@@ -32,7 +33,8 @@ const ImgPage = () => {
             
                 const res = await response.json();
     
-                setIList(res.results); setLast(res.total_pages);
+                setIList(res.results); setLoad(false);
+                setLast(res.total_pages);
             } catch (error) {
                 console.error(error.message);
             };
@@ -44,7 +46,7 @@ const ImgPage = () => {
     async function getImgs() {
         const url = `${GALLERYAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
 
-        setSearch(''); setLPage(1);
+        setSearch(''); setLPage(1); setLoad(true);
 
         try {
             const response = await fetch(url);
@@ -56,6 +58,7 @@ const ImgPage = () => {
             const res = await response.json();
 
             setIList(res); setLast(200);
+            setLoad(false);
         } catch (error) {
             console.error(error.message);
         };
@@ -64,6 +67,8 @@ const ImgPage = () => {
     async function loadMore(page) {
         if(page>=1){
             const url = `${GALLERYAPI}${page}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+
+            setLoad(true);
 
             try {
                 const response = await fetch(url);
@@ -74,14 +79,14 @@ const ImgPage = () => {
             
                 const res = await response.json();
     
-                setIList(res);
+                setIList(res); setLoad(false);
             } catch (error) {
                 console.error(error.message);
             };
 
             setLPage(page);
         }else{
-            setLPage(1);
+            setLPage(1); setLoad(false);
         };
     };
 
@@ -100,11 +105,12 @@ const ImgPage = () => {
     useEffect(() => {
         const url = `${GALLERYAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
 
-        setSearch(''); setLPage(1);
+        setSearch(''); setLPage(1); setLoad(true);
         
         axios.get(url)
         .then((res) => {
-            setIList(res.data); setLast(200);
+            setIList(res.data); 
+            setLast(200); setLoad(false);
         }).catch((err) => {
             console.log(err);
         }) 
@@ -124,7 +130,7 @@ const ImgPage = () => {
                         />
                     
                         <Button    
-                            variant="outline-primary" outline onClick={() => searchImgs()}
+                            variant="outline-primary" outline onClick={() => searchImgs()} disabled={loadin}
                             style={{display: 'flex', justifyContent: 'space-between', fontSize: 20}}
                         >
                             Search&nbsp;<MdImageSearch style={{fontSize: '27px'}} /> 
@@ -166,7 +172,7 @@ const ImgPage = () => {
                     <Pagination size='lg' style={{marginRight: '5px'}}>
                         <Pagination.First onClick={() => loadMore(1)} />
                         <Pagination.Prev onClick={() => loadMore(loadPage-1)} />
-                        <Pagination.Item>{loadPage}</Pagination.Item>
+                        <Pagination.Item active>{loadPage}</Pagination.Item>
                         <Pagination.Next onClick={() => loadMore(loadPage+1)} />
                         <Pagination.Last onClick={() => loadMore(last)} />
                     </Pagination>
