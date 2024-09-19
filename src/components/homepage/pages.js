@@ -99,13 +99,15 @@ const Pages = () => {
         const { progress } = useProgress();
 
         return (
-            <Html center>
-                <div style={{width: '100vw', height: '100vh'}}>
+            <Html>
+                <div style={{
+                    position: 'fixed'
+                }}>
                     <ProgressBar 
                         animated striped 
                         now={Math.round(progress)} 
                         label={`${Math.round(progress)}%`} 
-                        style={{height: '25px'}}
+                        style={{height: '25px', top: '50%'}}
                     />
                 </div>
             </Html>

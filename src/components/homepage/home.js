@@ -1,28 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 
 import Typed from 'typed.js';
-// import { Row, Col } from 'react-bootstrap';
 
 import { SlSocialInstagram, SlSocialLinkedin, SlSocialGithub } from "react-icons/sl";
+import { SiWhatsapp } from 'react-icons/si';
 
 const HomeHtml = () => {
     const el = useRef(null);
 
     const textArr = [
-      "I'm a React developer. ", 
-      "I'm a Tech Enthusiast. ", 
-      "5+ years in IT Industry. ",
-      `Learning Node JS, MongoDB. ^1000\n Unreal Engine, Unity and Extended Reality. `
+      "I'm a React developer and Tech Enthusiast.", 
+      "5+ years in IT Industry based in Hyderabad, India.",
+      `Learning Node JS, MongoDB,^1000\n Unreal Engine, Unity and XR.`
     ];
-
-    // let index = 0;
-  
-    // function displayNext() {
-    //     if(index<textArr.length){
-    //         console.log(index); setText(textArr[index]);
-    //         index++;
-    //     };
-    // };
   
     useEffect(() => {
         document.title = 'Welcome';
@@ -67,6 +57,10 @@ const HomeHtml = () => {
 
                     <a href='https://www.instagram.com/d.s.a.varma9/' target='blank'>
                         <SlSocialInstagram style={{color: '#fff', fontSize: '35px'}} />
+                    </a>
+
+                    <a href='tel: +91 7893000778' target='blank'>
+                        <SiWhatsapp style={{color: '#fff', fontSize: '35px'}} />
                     </a>
                 </div>
             </div>

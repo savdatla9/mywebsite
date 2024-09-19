@@ -23,8 +23,8 @@ const SurfaceAR = () => {
     };
 
     return (
-        <div>
-            <h3 style={{textAlign: 'center'}}>Web AR - (Surface Target)</h3>
+        <div style={{textAlign: 'center'}}>
+            <h1 style={{textDecorationLine: 'underline'}}>Web AR - (Surface Target)</h1>
 
             <p>
                 <a 
@@ -36,8 +36,7 @@ const SurfaceAR = () => {
             </p>
 
             <div style={{
-                textAlign: 'center', display: 'flex', 
-                flexDirection: 'column', justifyContent: 'center'
+                display: 'flex', flexDirection: 'column', justifyContent: 'center'
             }}>
                 <model-viewer
                     poster={ARCard.img}
