@@ -23,7 +23,7 @@
     "framer-motion": "^11.3.19",
     "framer-motion-3d": "^11.3.19",
     "mind-ar": "^1.2.5",
-    "playroom": "^0.38.1",
+    "playroomkit": "^0.0.81",
     "primereact": "^10.8.3",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
