@@ -55,7 +55,7 @@ const HomeHtml = () => {
                         <SlSocialLinkedin style={{color: '#fff', fontSize: '35px'}} />
                     </a>
 
-                    <a href='https://www.instagram.com/d.s.a.varma9/' target='blank'>
+                    <a href='https://www.instagram.com/d.s.a.v_/' target='blank'>
                         <SlSocialInstagram style={{color: '#fff', fontSize: '35px'}} />
                     </a>
 

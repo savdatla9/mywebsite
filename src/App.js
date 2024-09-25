@@ -5,6 +5,8 @@ import Home from './components/homepage/index.js';
 
 import ImgPage from './components/imgpage/index.js';
 import NewsPage from './components/newspage/index.js';
+import Project from './components/projectpage/project.js';
+import Contact from './components/contactpage/contact.js';
 import WeatherPage from './components/weatherpage/index.js';
 
 import SurfaceAR from './components/realitycomponents/surfacewebar.js';
@@ -18,8 +20,11 @@ import './App.css';
 
 const router = createBrowserRouter([
   {path: "/", element: (<Home />)},
+  {path: 'Home', element: (<Home />)},
   {path: "News", element: (<NewsPage />)},
+  {path: 'Contact', element: (<Contact />)},
   {path: `Gallery`, element: (<ImgPage />)},
+  {path: 'Projects', element: (<Project />)},
   {path: 'Weather', element: (<WeatherPage />)},
   {path: "WebAR/Marker", element: (<MarkerAR />)},
   {path: "WebAR/Surface", element: (<SurfaceAR />)},

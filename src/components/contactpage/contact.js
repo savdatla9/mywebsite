@@ -2,15 +2,10 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ScrollControls, Scroll, SoftShadows } from '@react-three/drei';
 
-import Pages from './pages';
-import HomeHtml from './home';
+import Pages from './page';
 
-// export const config = {
-//     sections: ["home", "skills", "projects", "contact"],
-// };
-
-function Home() {
-    return(
+const Contact = () => {
+    return (
         <>
             <Canvas camera={{ position: [0, 0.5, 5], fov: 42 }} style={{width: '100%', height: '100vh'}}>
                 <color attach="background" args={["#282c34"]} />
@@ -23,9 +18,9 @@ function Home() {
                     <Scroll>
                         <Pages />
                     </Scroll>
-                    <Scroll html>
+                    {/* <Scroll html>
                         <HomeHtml />
-                    </Scroll>
+                    </Scroll> */}
                 </ScrollControls>
                 
                 <mesh rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -1.01, 0]} receiveShadow>
@@ -36,7 +31,7 @@ function Home() {
                 <SoftShadows size={40} samples={16} />
             </Canvas>
         </>
-    );
+    )
 };
 
-export default Home;
+export default Contact;

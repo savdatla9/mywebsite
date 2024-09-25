@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { useThree } from "@react-three/fiber";
 import { 
     Environment, Float, Text3D, useIntersect, Html, useProgress,
-    useTexture, useGLTF, Center, MeshWobbleMaterial,  
+    useTexture, useGLTF, Center, MeshWobbleMaterial, RoundedBox, 
 } from "@react-three/drei";
 // import { OrbitControls } from '@react-three/drei';
 
@@ -35,13 +35,60 @@ const Pages = () => {
 
     const emoji = useTexture('/profile.jpg');
 
+    const walpaper = useTexture('/codwall.png');
+
     const ReactLogo = (props) => {
-        const gltf = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/react-logo/model.gltf');
+        const { nodes, materials } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/react-logo/model.gltf');
 
         return(
-            <mesh {...props}>
-                <primitive object={gltf.scene} />
-            </mesh>
+            <group {...props} dispose={null}>
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Cube.geometry}
+                    material={materials['default']}
+                    position={[0, 1.311, 0]}
+                    rotation={[0, Math.PI / 2, 0]}
+                    scale={0.266}
+                >
+                    <meshToonMaterial color={'#1E90FF'} />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Torus001.geometry}
+                        material={materials['default']}
+                        position={[0.336, -0.081, 0.024]}
+                        rotation={[-0.16, 0, -Math.PI / 2]}
+                        scale={[3.754, 1.468, 3.005]}
+                    >
+                        <meshToonMaterial color={'#1E90FF'} />
+                    </mesh>
+
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Torus002.geometry}
+                        material={materials['default']}
+                        position={[-0.515, -0.104, 0.165]}
+                        rotation={[-1.179, 0, -Math.PI / 2]}
+                        scale={[3.754, 1.468, 3.005]}
+                    >
+                        <meshToonMaterial color={'#1E90FF'} />
+                    </mesh>
+
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Torus003.geometry}
+                        material={materials['default']}
+                        position={[-0.035, -0.107, 0.004]}
+                        rotation={[0.89, 0, -Math.PI / 2]}
+                        scale={[3.754, 1.468, 3.005]}
+                    >
+                        <meshToonMaterial color={'#1E90FF'} />
+                    </mesh>
+                </mesh>
+            </group>
         );
     };
 
@@ -76,12 +123,31 @@ const Pages = () => {
     };
 
     const UnrealEngineLogo = (props) => {
-        const gltf = useGLTF('/models/unreal_engine_logo.glb');
+        const {nodes, materials} = useGLTF('/models/unreal_engine_logo.glb');
 
         return(
-            <mesh {...props}>
-                <primitive object={gltf.scene} />
-            </mesh>
+            <group {...props} dispose={null}>
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Cube_Material_0.geometry}
+                    material={materials.Material}
+                    rotation={[-Math.PI / 2, 0, 0]}
+                    scale={100}
+                >
+                    <meshToonMaterial color='#808080' />
+                </mesh>
+
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Cylinder_Material_0.geometry}
+                    material={materials.Material}
+                    rotation={[-Math.PI / 2, 0, 0]}
+                > 
+                    <meshToonMaterial color='#808080' />
+                </mesh>
+          </group>
         );
     };
 
@@ -93,6 +159,27 @@ const Pages = () => {
                 <primitive object={gltf.scene} />
             </mesh>
         );
+    };
+
+    const UnityLogo = (props) => {
+        const { nodes, materials } = useGLTF('/models/unity_logo.glb');
+
+        return (
+            <group {...props} dispose={null}>
+                <group scale={0.01}>
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Unity_3DLogo_Material_0.geometry}
+                        material={materials.Material}
+                        rotation={[0, 0, 0]}
+                        scale={100}
+                    >
+                        <meshToonMaterial color='whitesmoke' />
+                    </mesh>
+                </group>
+            </group>
+        )
     };
 
     function Loader() {
@@ -138,17 +225,29 @@ const Pages = () => {
                                         <meshPhysicalMaterial color={'darksalmon'} wireframe />
                                     </mesh>
 
-                                    <UnrealEngineLogo scale={0.001} position={[-0.32, 0.2, -0.48]} rotation={[0, 0, 0]} />
+                                    <UnrealEngineLogo scale={0.001} position={[-0.2, 0.08, -0.43]} rotation={[0, 0, 0]} />
 
-                                    <ReactLogo scale={0.15} position={[-0.25, -0.1, -0.4]} rotation={[0, 0, Math.PI/2]} />
+                                    <UnityLogo scale={0.1} position={[-0.5, 0.32, -0.48]} rotation={[-0.90, 0, 5.5]} />
+
+                                    <ReactLogo scale={0.125} position={[0.25, -0.1, -0.4]} rotation={[0, 0, Math.PI/2]} />
 
                                     <Screen position={[-0.5, -0.513, 0]} scale={0.4} rotation={[0, 0, 0]} />
                                 
+                                    <mesh 
+                                        position={[-0.5, 0.11, -0.56]}
+                                        rotation={[50, 0, 0]} 
+                                        scale={[1.25, 0.86, 0.01]}
+                                    >
+                                        <RoundedBox args={[1, 1, 0.6]}>
+                                            <meshBasicMaterial map={walpaper} />
+                                        </RoundedBox>
+                                    </mesh>
+
                                     <Mobile position={[0.35, -0.313, 0]} scale={0.15} rotation={[-Math.PI/2, 0, 0]} />
 
-                                    <VRSet position={[-1.5, -0.35, 0]} scale={0.05} rotation={[0, -Math.PI/2, 0]} />
+                                    <VRSet position={[-1.5, -0.35, 0]} scale={0.03} rotation={[0, -Math.PI/2, 0]} />
 
-                                    <BackNode position={[-0.85, 0.15, -0.4]} scale={0.15} rotation={[0, 0, 0]} />
+                                    <BackNode position={[-0.9, 0.15, -0.4]} scale={0.15} rotation={[0, 0, 0]} />
                                 </group>
                             </Float>
                         </Center>

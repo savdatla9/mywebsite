@@ -2,7 +2,7 @@ import { usePlayersList } from "playroomkit";
 import React, { useState, Fragment } from 'react'; 
 import { Image } from "react-bootstrap";
 
-import { AiOutlineFullscreenExit, AiOutlineFullscreen } from "react-icons/ai";
+import { BiFullscreen, BiExitFullscreen } from "react-icons/bi";
 
 export const Leaderboard = () => {
   const players = usePlayersList(true);
@@ -64,7 +64,7 @@ export const Leaderboard = () => {
         style={{position: 'fixed', top: 4, right: 4, zIndex: 10, color: "white", backgroundColor: "transparent", border: '0px solid', boxShadow: 'none'}}
         onClick={() => handleFullscreen()}
       >
-        {isfull===false ? <AiOutlineFullscreen style={{fontSize: 35}} /> : <AiOutlineFullscreenExit style={{fontSize: 35}} />}
+        {isfull===false ? <BiFullscreen style={{fontSize: 35}} /> : <BiExitFullscreen style={{fontSize: 35}} />}
       </button>
     </Fragment>
   );
