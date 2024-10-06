@@ -1,37 +1,114 @@
-import React, { useEffect, useRef } from 'react';
-import 'aframe';
-import 'mind-ar/dist/mindar-image-aframe.prod.js';
+// import React, { useState, useEffect } from "react";
+// import { Canvas } from "@react-three/fiber";
+// import { XRButton, XR } from "@react-three/xr";
 
-export default function MarkerAR() {
-    const sceneRef = useRef(null);
+// import { trackableImage as createTrackableImage } from "./markercomps/timg";
+// // import Scene from "./Scene"
+
+// function MarkerAR() {
+//     const [trackableImage, setTrackableImage] = useState()
+
+//     // const doCreateTrackableImage = async () => {
+//     //     try {
+//     //         const currTrackableImage = await createTrackableImage(image.current, 0.1)
+//     //         setTrackableImage(currTrackableImage.image)
+//     //     } catch (err) {
+//     //         console.log(err);
+//     //     }
+//     // }
+
+//     useEffect(() => {
+//         const currTrackableImage = createTrackableImage('./logo.png', 0.1)
+//         setTrackableImage(currTrackableImage.image);
+//     }, []);
+
+//     return (
+//         <div>
+//             <h1>WebXR Image Target</h1>
+            
+//             {/* <img
+//                 className="trackedImage"
+//                 onLoad={() => doCreateTrackableImage()}
+//                 alt="webxr imagetracking"
+//                 ref={image}
+//                 src={process.env.PUBLIC_URL + "/logo.png"} 
+//             /> */}
+                
+//             {trackableImage && <Canvas
+//                 style={{ position: "absolute", left: 0, top: 0, width: '100vw' }}
+//             >
+//                 <XR>
+//                     <XRButton 
+//                         mode="AR"
+//                         sessionInit={{
+//                             requiredFeatures: ["image-tracking"],
+//                             trackedImages: [trackableImage],
+//                             // optionalFeatures: ['local-floor', 'bounded-floor']
+//                         }}
+//                     >
+//                         Enter AR
+//                     </XRButton>
+
+//                     <mesh>
+//                         <sphereGeometry />
+//                         <meshPhongMaterial color={'skyblue'} />
+//                     </mesh>
+//                 </XR>
+//             </Canvas>}
+//         </div>
+//     )
+// }
+
+// export default MarkerAR
+
+import React, { useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+// import { Image } from 'react-bootstrap';
+// import * as THREE from 'three';
+
+function MarkerAR() {
+    const [imageTarget, setImageTarget] = useState(null);
+
+    let imgTrg = createImageBitmap('./logo.png');
 
     useEffect(() => {
-        const sceneEl = sceneRef.current;
-        
-        const arSystem = sceneEl.systems["mindar-image-system"];
-
-        sceneEl.addEventListener('renderstart', () => {
-            arSystem.start();
+        navigator.xr.requestSession('immersive-ar', {
+            requiredFeatures: ['image-tracking'],
+            trackedImages: [
+                {
+                    image: imgTrg, 
+                    widthInMeters: 0.2
+                }
+            ]
+        }).then((session) => {
+            session.addEventListener('image-tracking', (event) => {
+                const imageTarget = event.target;
+                setImageTarget(imageTarget);
+            });
         });
-
-        return () => {
-            arSystem.stop();
-        }
     }, []);
 
-    return (
-        <a-scene ref={sceneRef} mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/image-tracking/assets/card-example/card.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;" color-space="sRGB" embedded renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-            <a-assets>
-                <img id="card" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/image-tracking/assets/card-example/card.png" />
-                <a-asset-item id="avatarModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
-            </a-assets>
+    return(
+        <Canvas>
+            <ambientLight />
 
-            <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+            <directionalLight />
 
-            <a-entity mindar-image-target="targetIndex: 0">
-                <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-                <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
-            </a-entity>
-        </a-scene>
-    )
-}
+            {imageTarget && (
+                <group ref={(ref) => {
+                    if(ref){
+                        ref.position.copy(imageTarget.position);
+                        ref.quaternion.copy(imageTarget.quaternion);
+                    }
+                }}>
+                    <mesh>
+                        <sphereGeometry />
+                        <meshPhongMaterial color={'skyblue'} />
+                    </mesh>
+                </group>
+            )}
+        </Canvas>
+    );
+};
+
+export default MarkerAR;

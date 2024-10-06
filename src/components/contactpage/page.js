@@ -1,11 +1,13 @@
-import React, { useRef } from 'react';
-import { useThree } from "@react-three/fiber";
+import React, { useRef, useState, useEffect } from 'react';
+
+import * as THREE from 'three';
+import { useThree, useFrame } from "@react-three/fiber";
 import { 
     Environment, Text3D, useIntersect, Center,
-    useTexture, Html, useProgress, useGLTF,  
+    useTexture, Html, useProgress, useGLTF,
     RoundedBox, Float, MeshTransmissionMaterial,
 } from "@react-three/drei";
-import { OrbitControls } from '@react-three/drei';
+// import { OrbitControls } from '@react-three/drei';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
@@ -37,6 +39,8 @@ export const Item = ({ position, children }) => {
 const Pages = () => {
     const { height, width } = useThree((state) => state.viewport);
 
+    const [view, setView] = useState(false);
+
     const walpaper = useTexture('/contact.jpg');
 
     const Screen = (props) => {
@@ -46,6 +50,43 @@ const Pages = () => {
             <mesh {...props}>
                 <primitive object={gltf.scene} />
             </mesh>
+        );
+    };
+
+    const MailBox = (props) => {
+        const gltf = useGLTF('/models/Mailbox.glb');
+
+        const [mailHover, setMHover] = useState(false);
+
+        useEffect(() => {
+            const emissiveColor = new THREE.Color("#ffc527");
+
+            Object.values(gltf.materials).forEach((material) => {
+                material.emissive = emissiveColor;
+            });
+        }, []);
+
+        useFrame(() => {
+            Object.values(gltf.materials).forEach((material) => {
+                material.emissiveIntensity = THREE.MathUtils.lerp(
+                    material.emissiveIntensity,
+                    mailHover ? 0.32 : 0,
+                    0.1
+                );
+            });
+        });
+
+        return(
+            <group 
+                dispose={null} {...props} 
+                onPointerEnter={() => setMHover(true)} 
+                onPointerLeave={() => setMHover(false)}
+                onClick={() => setView(!view)}
+            >
+                <mesh>
+                    <primitive object={gltf.scene} />
+                </mesh>
+            </group>
         );
     };
 
@@ -72,10 +113,10 @@ const Pages = () => {
         <>
             <Environment preset='sunset' />
 
-            <pointLight color="white" position={[8, -25, 5]} intensity={20} />
+            <pointLight color="white" position={[8, -15, 5]} intensity={20} />
 
-            <OrbitControls />
-                
+            {/* <OrbitControls /> */}
+
             <pointLight color='grey' position={[0, -height * 2.25, 5]} intensity={10} />
 
             <React.Suspense fallback={<Loader />}>
@@ -114,6 +155,31 @@ const Pages = () => {
                                         scale={[0.5, 0.5, 0.2]}
                                     >DISCUSS</SectionTitle>
                                 </Float>
+
+                                <MailBox 
+                                    position={[0.75, -0.2, 0]} 
+                                    scale={[0.15, 0.2, 0.15]} 
+                                    rotation={[0, 54, 0]} 
+                                />
+
+                                <Html position={[-1, 0, 0]}>
+                                    {view ? <div style={{
+                                        display: 'flex', flexDirection: 'column', cursor: 'pointer', width: '65vw', 
+                                        justifyContent: 'center', alignItems: 'center', textAlign: 'center',
+                                        borderRadius: '5px', height: '25vh', backgroundColor: '#00000050', 
+                                        boxShadow: '0px 0px 44px 4px rgba(240,235,240,1)', padding: '5%',
+                                    }}>
+                                        <div style={{width: '100%'}} onClick={() => window.open(`mailto:dsavarma.9@gmail.com`)}>
+                                            dsavarma.9@gmail.com
+                                        </div>
+
+                                        <div>&nbsp;</div>
+
+                                        <div style={{width: '100%'}} onClick={() => window.open(`tel:+917893000778`)}>
+                                            +91 7893000778
+                                        </div>
+                                    </div> : ''}
+                                </Html>
                             </group>
                         </Center>
                     </Item>
@@ -126,3 +192,4 @@ const Pages = () => {
 export default Pages;
 
 useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf');
+useGLTF.preload('/models/Mailbox.glb');

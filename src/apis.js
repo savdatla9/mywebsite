@@ -43,6 +43,10 @@ const firebaseConfig = {
     measurementId: "G-7WMZNR98RS"
 };
 
+export const poly_pizza_key = 'b281b13aac914c57af4b6c81ab8003ff';
+export const poly_pizza_id = 'g5z6kWV4En';
+export const poly_pizza_api = 'https://api.poly.pizza/v1.1/';
+
 export const app = initializeApp(firebaseConfig);
 
 // export const analytics = getAnalytics(app);

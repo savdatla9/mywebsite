@@ -363,6 +363,33 @@ a {
   height: 45px;
 }
 
+.footer_links {
+  line-height: 45px;
+  background: rgba(0, 0, 0, .5);
+  width: max-content;
+  display: flex;
+  position: absolute;
+  bottom: 5vh;
+  z-index: 10;
+  gap: 0.98rem;
+  border-radius: 3rem;
+  height: 15vh;
+  align-items: center;
+}
+
+.footer_links a {
+  background: transparent;
+  padding: 0.9rem;
+  border-radius: 55%;
+  display: flex;
+  font-size: 48px;
+}
+
+.footer_links a img {
+  width: 45px;
+  height: 45px;
+}
+
 .footer_input{
   background-color: #f4f4f5 !important;
   padding: 5px !important;

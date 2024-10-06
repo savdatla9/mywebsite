@@ -10,9 +10,11 @@ import Contact from './components/contactpage/contact.js';
 import WeatherPage from './components/weatherpage/index.js';
 
 import SurfaceAR from './components/realitycomponents/surfacewebar.js';
-import MarkerAR from './components/realitycomponents/markerwebar.js';
+// import MarkerAR from './components/realitycomponents/markerwebar.js';
 
 import Shooters from './components/games/Shooters/index.js';
+
+import Sidebar from './components/sidebar.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
   {path: `Gallery`, element: (<ImgPage />)},
   {path: 'Projects', element: (<Project />)},
   {path: 'Weather', element: (<WeatherPage />)},
-  {path: "WebAR/Marker", element: (<MarkerAR />)},
+  // {path: "WebAR/Marker", element: (<MarkerAR />)},
   {path: "WebAR/Surface", element: (<SurfaceAR />)},
   {path: "Game/Shooters", element: (<Shooters />)},
 ]);
@@ -35,6 +37,8 @@ function App() {
   return (
     <div className="App-header">
       <RouterProvider router={router} />
+
+      <Sidebar />
     </div>
   );
 };
