@@ -225,13 +225,13 @@ const Pages = () => {
                                         <meshPhysicalMaterial color={'darksalmon'} wireframe />
                                     </mesh>
 
-                                    <UnrealEngineLogo scale={0.001} position={[-0.2, 0.08, -0.43]} rotation={[0, 0, 0]} />
+                                    <UnrealEngineLogo scale={0.001} position={[-0.2, 0.08, -0.43]} />
 
                                     <UnityLogo scale={0.1} position={[-0.5, 0.32, -0.48]} rotation={[-0.90, 0, 5.5]} />
 
-                                    <ReactLogo scale={0.125} position={[0.25, -0.1, -0.4]} rotation={[0, 0, Math.PI/2]} />
+                                    <ReactLogo scale={0.125} position={[0, -0.2, -0.4]} />
 
-                                    <Screen position={[-0.5, -0.513, 0]} scale={0.4} rotation={[0, 0, 0]} />
+                                    <Screen position={[-0.5, -0.513, 0]} scale={0.4} />
                                 
                                     <mesh 
                                         position={[-0.5, 0.11, -0.56]}

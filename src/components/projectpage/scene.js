@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import * as THREE from 'three';
-// import { useThree } from '@react-three/fiber';
-import { RoundedBox, MeshPortalMaterial, Environment, useCursor, Center, Text3D, Float } from '@react-three/drei';
+// import * as THREE from 'three'; #0085ff
+import { useThree } from '@react-three/fiber';
+import { Center, Text3D, Float } from '@react-three/drei';
 
 export const SectionTitle = ({ color, title, ...props }) => {
     return (
@@ -15,12 +15,8 @@ export const SectionTitle = ({ color, title, ...props }) => {
 };
 
 const Scene = () => {
-    const [active, setActive] = useState(null);
-    const [hover, setHover] = useState(null);
 
-    // const { width, height } = useThree()
-
-    useCursor(hover);
+    const { height, width } = useThree((state) => state.viewport);
 
     return (
         <>
@@ -30,43 +26,51 @@ const Scene = () => {
 
             <Float>
                 <Center>
-                    <group position-z={-1}>
-                        <RoundedBox
-                            args={[2, 3, 0.1]} position={[0, -1.7, 0]}
-                            onDoubleClick={() => setActive(active === 'marvij' ? null : 'marvij')}
+                    <group position-z={-((width*2)/height)} scale={[1, 1, width/height]}>
+                        <SectionTitle color={'white'} title={'Three Js'} position={[-0.6, 0.85, 0]} scale={[1, 1, 0.15]} />
+
+                        <SectionTitle color={'white'} title={'AR'} position={[-0.5, -0.8, 0]} scale={[1, 1, 0.15]} />
+                        <SectionTitle color={'white'} title={'VR'} position={[0.2, -0.8, 0]} scale={[1, 1, 0.15]} />
+
+                        <SectionTitle color={'white'} title={'React'} position={[-1.5, 0.35, 0]} scale={[1, 1, 0.15]} />
+                        <SectionTitle color={'white'} title={'Native'} position={[-1.5, -0.05, 0]} scale={[1, 1, 0.15]} />
+
+                        <SectionTitle color={'white'} title={'React Js'} position={[0.5, 0.1, 0]} scale={[1, 1, 0.15]} />
+                        {/* <RoundedBox
+                            args={[2, 2, 0.1]} position={[0, -1.2, 0]}
+                            onDoubleClick={() => setActive(active === 'three' ? null : 'three')}
                             onPointerEnter={() => setHover('')}
                             onPointerLeave={() => setHover(null)}
                         >
                             <MeshPortalMaterial side={THREE.DoubleSide} >
                                 <ambientLight intensity={1} />
 
-                                {/* <OrbitControls enableDamping={false} enablePan={false} enableZoom={false} /> */}
-
                                 <Environment preset="sunset" />
 
-                                <SectionTitle color={'hotpink'} title={'Marvij IT'} position={[-0.8, 0, -0.5]} />
+                                <SectionTitle color={'Black'} title={'Three Js'} position={[-0.8, 0, -0.5]} scale={[1, 1, 0.35]} />
                                 
+                                // #1C0E3F
+
                                 <mesh>
                                     <sphereGeometry args={[5, 64, 64]} />
-                                    <meshStandardMaterial side={THREE.BackSide} color={'#1C0E3F'}  />
+                                    <meshStandardMaterial side={THREE.BackSide} color={'white'}  />
                                 </mesh>
                             </MeshPortalMaterial>
                         </RoundedBox>
 
                         <RoundedBox
-                            args={[2, 3, 0.1]} position={[0, 1.7, 0]}
-                            onDoubleClick={() => setActive(active === 'loginsoft' ? null : 'loginsoft')}
+                            args={[2, 2, 0.1]} position={[0, 1.2, 0]}
+                            onDoubleClick={() => setActive(active === 'xr' ? null : 'xr')}
                             onPointerEnter={() => setHover('')}
                             onPointerLeave={() => setHover(null)}
                         >
                             <MeshPortalMaterial side={THREE.DoubleSide} >
                                 <ambientLight intensity={1} />
 
-                                {/* <OrbitControls enableDamping={false} enablePan={false} enableZoom={false} /> */}
-
                                 <Environment preset="sunset" />
 
-                                <SectionTitle color={'white'} title={'LoginSoft'} position={[-1, 0, -0.5]} />
+                                <SectionTitle color={'white'} title={'AR'} position={[-0.65, 0, -0.5]} scale={[1, 1, 0.15]} />
+                                <SectionTitle color={'white'} title={'VR'} position={[0.2, 0, -0.5]} scale={[1, 1, 0.15]} />
                                 
                                 <mesh>
                                     <sphereGeometry args={[5, 64, 64]} />
@@ -76,48 +80,47 @@ const Scene = () => {
                         </RoundedBox>
 
                         <RoundedBox
-                            args={[2, 3, 0.1]} position={[-2.5, 0, 0]}
-                            onDoubleClick={() => setActive(active === '' ? null : '')}
+                            args={[2, 2, 0.1]} position={[-2.5, 0, 0]}
+                            onDoubleClick={() => setActive(active === 'rn' ? null : 'rn')}
                             onPointerEnter={() => setHover('')}
                             onPointerLeave={() => setHover(null)}
                         >
                             <MeshPortalMaterial side={THREE.DoubleSide}>
                                 <ambientLight intensity={1} />
 
-                                {/* <OrbitControls enableDamping={false} enablePan={false} enableZoom={false} /> */}
-
                                 <Environment preset="sunset" />
 
-                                <SectionTitle color={'white'} title={'PlugXR'} position={[-0.8, 0, -0.5]} />
+                                <SectionTitle color={'#0085ff'} title={'React'} position={[-1.1, 0.2, -0.5]} scale={[1, 1, 0.15]} />
+                                <SectionTitle color={'#0085ff'} title={'Native'} position={[-1.1, -0.2, -0.5]} scale={[1, 1, 0.15]} />
 
                                 <mesh>
                                     <sphereGeometry args={[5, 64, 64]} />
-                                    <meshStandardMaterial side={THREE.BackSide} color={'#0085ff'} />
+                                    <meshStandardMaterial side={THREE.BackSide} color={'white'} />
                                 </mesh>
                             </MeshPortalMaterial>
                         </RoundedBox>
 
                         <RoundedBox
-                            args={[2, 3, 0.1]} position={[2.5, 0, 0]}
-                            onDoubleClick={() => setActive(active === 'visaka' ? null : 'visaka')}
+                            args={[2, 2, 0.1]} position={[2.5, 0, 0]}
+                            onDoubleClick={() => setActive(active === 'react' ? null : 'react')}
                             onPointerEnter={() => setHover('')}
                             onPointerLeave={() => setHover(null)}
                         >
                             <MeshPortalMaterial side={THREE.DoubleSide}>
                                 <ambientLight intensity={1} />
 
-                                {/* <OrbitControls enableDamping={false} enablePan={false} enableZoom={false} /> */}
-
                                 <Environment preset="sunset" />
 
-                                <SectionTitle color={'white'} title={'Visaka'} position={[-0.8, 0, -0.5]} />
+                                // #58CCDC 
+
+                                <SectionTitle color={'#0085ff'} title={'React Js'} position={[-0.5, 0, -0.5]} scale={[1, 1, 0.15]} />
                                 
                                 <mesh>
                                     <sphereGeometry args={[5, 64, 64]} />
-                                    <meshStandardMaterial side={THREE.BackSide} color={'#e41f26'} />
+                                    <meshStandardMaterial side={THREE.BackSide} color={'#ffffff'} />
                                 </mesh>
                             </MeshPortalMaterial>
-                        </RoundedBox>
+                        </RoundedBox> */}
                     </group>
                 </Center>
             </Float>

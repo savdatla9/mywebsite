@@ -368,7 +368,7 @@ a {
   background: rgba(0, 0, 0, .5);
   width: max-content;
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 5vh;
   z-index: 10;
   gap: 0.98rem;
