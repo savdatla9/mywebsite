@@ -5,8 +5,10 @@ import { getStorage } from "firebase/storage";
 
 export const DBS = '';
 
-export const GALLERYAPI = 'https://api.unsplash.com/photos?page=';
-export const SEARCHGALLERYAPI = 'https://api.unsplash.com/search/photos?page=';
+export const GALLERYAPI = 'https://api.unsplash.com/';
+export const GALLERYLISTAPI = GALLERYAPI + 'photos?page=';
+export const SEARCHGALLERYAPI = GALLERYAPI + 'search/photos?page=';
+export const RANDOMAPI =  GALLERYAPI + 'photos/random';
 export const GA_APP_ID = '638586';
 export const GA_AKEY = 'G4ArQlEDeIPLnmXRn8450doj-cd_odzIeO7xDP5h6s8';
 export const GA_SKEY = 'FO61lV3M_X0iuWEEgZ3BGGUarDhi9yc6XNqiNACg-50';

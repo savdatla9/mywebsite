@@ -11,9 +11,11 @@ const SurfaceAR = () => {
     };
 
     useEffect(() => {
+        document.title = 'WebXR - Surface';
+
         if(arBtn){
             isHidden(arBtn.current) ? setHide(true) : setHide(false);
-        }
+        };
     }, [arBtn]);
 
     const arCheck = () => {
@@ -62,11 +64,11 @@ const SurfaceAR = () => {
                         onClick={arCheck}
                         style={{
                             position:'absolute', bottom:'7.5px', right:'7.5px', 
-                            backgroundColor:'#ffa50050', 
-                            borderRadius:'15px', color:'#282c34'
+                            backgroundColor:'#ffa50050', display: 'flex', flexDirection: 'row',
+                            borderRadius:'15px', color:'#282c34', alignItems: 'center'
                         }}
                     >
-                       <p style={{fontSize: '13px', borderRadius: '25px'}}><MdOutlineViewInAr size={30} /></p>
+                       <MdOutlineViewInAr size={25} />
                     </button>
 
                     <div slot="poster" style={{

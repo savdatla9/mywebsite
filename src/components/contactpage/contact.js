@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ScrollControls, Scroll, SoftShadows } from '@react-three/drei';
 
 import Pages from './page';
 
 const Contact = () => {
+    useEffect(() => {
+        document.title = `Let's discuss things.`;
+    }, []);
+
     return (
         <>
             <Canvas camera={{ position: [0, 0.5, 5], fov: 42 }} style={{width: '100%', height: '100vh'}}>

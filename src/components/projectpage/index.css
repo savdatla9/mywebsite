@@ -25,7 +25,8 @@
     flex-wrap: wrap !important; 
     flex-direction: row !important; 
     justify-content: center !important;
-    min-width: 90vw !important;
+    align-items: center !important;
+    min-width: 95vw !important;
 }
 
 .card {

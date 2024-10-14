@@ -5,7 +5,7 @@ import { Container, Row, Col, Card, Form, Button, Pagination } from 'react-boots
 import { BsDownload } from "react-icons/bs";
 import { MdImageSearch } from "react-icons/md";
 
-import { GALLERYAPI, SEARCHGALLERYAPI, GA_AKEY } from '../../apis';
+import { GALLERYLISTAPI, SEARCHGALLERYAPI, GA_AKEY } from '../../apis';
 
 
 const ImgPage = () => {
@@ -15,7 +15,7 @@ const ImgPage = () => {
     const [perPage, setPPage] = useState(9);
     const [search, setSearch] = useState('');
 
-// `https://api.unsplash.com/search/photos?page=${loadPage}&query=${search}&client_id=${}&per_page=`
+    // `https://api.unsplash.com/search/photos?page=${loadPage}&query=${search}&client_id=${}&per_page=`
 
     async function searchImgs() {
         if(search.length){
@@ -42,7 +42,7 @@ const ImgPage = () => {
     };
 
     async function getImgs() {
-        const url = `${GALLERYAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+        const url = `${GALLERYLISTAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
 
         setSearch(''); setLPage(1);
 
@@ -63,7 +63,7 @@ const ImgPage = () => {
 
     async function loadMore(page) {
         if(page>=1){
-            const url = `${GALLERYAPI}${page}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+            const url = `${GALLERYLISTAPI}${page}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
 
             try {
                 const response = await fetch(url);
@@ -98,7 +98,7 @@ const ImgPage = () => {
     };
 
     useEffect(() => {
-        const url = `${GALLERYAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
+        const url = `${GALLERYLISTAPI}${loadPage}&per_page=${perPage}&order_by=popular&client_id=${GA_AKEY}`;
 
         setSearch(''); setLPage(1);
         
@@ -107,7 +107,7 @@ const ImgPage = () => {
             setIList(res.data); setLast(200);
         }).catch((err) => {
             console.log(err);
-        }) 
+        })
     }, []);
     
     return (

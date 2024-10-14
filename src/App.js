@@ -29,7 +29,7 @@ const router = createBrowserRouter([
   {path: 'Projects', element: (<Project />)},
   {path: 'Weather', element: (<WeatherPage />)},
   // {path: "WebAR/Marker", element: (<MarkerAR />)},
-  {path: "WebAR/Surface", element: (<SurfaceAR />)},
+  {path: "WebXR/Surface", element: (<SurfaceAR />)},
   {path: "Game/Shooters", element: (<Shooters />)},
 ]);
 
