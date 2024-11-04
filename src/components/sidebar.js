@@ -30,7 +30,7 @@ const Sidebar = () => {
                 <FaHome style={{color: select==='home' ? '#8FBC8F' : '#ffffff'}} />
             </a>
             
-            <a href='Home' onClick={() => setSelect('skill')}>
+            <a href='Skills' onClick={() => setSelect('skill')}>
                 <FaFolderOpen style={{color: select==='skill' ? '#8FBC8F' : '#ffffff'}} />
             </a>
             

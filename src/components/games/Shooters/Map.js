@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 export const Map = () => {
   const map = useGLTF("/models/map.glb");
+  
   useEffect(() => {
     map.scene.traverse((child) => {
       if (child.isMesh) {
@@ -12,6 +13,7 @@ export const Map = () => {
       }
     });
   });
+
   return (
     <>
       <RigidBody colliders="trimesh" type="fixed">
