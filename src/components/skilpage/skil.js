@@ -196,7 +196,7 @@ const Scene = () => {
             <OrbitControls />
 
             <Center>
-                {view==='' && <group position={[0, 0, -(width/height)]}>
+                {view==='' && <group position={[0, 0, -5]} scale={(width/height)*0.5}>
                     <ReactLogo 
                         scale={0.9} 
                     />
