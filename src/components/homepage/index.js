@@ -5,9 +5,9 @@ import { ScrollControls, Scroll, SoftShadows } from '@react-three/drei';
 import Pages from './pages';
 import HomeHtml from './home';
 
-export const config = {
-    sections: ["home", "skills", "projects", "contact"],
-};
+// export const config = {
+//     sections: ["home", "skills", "projects", "contact"],
+// };
 
 function Home() {
     return(

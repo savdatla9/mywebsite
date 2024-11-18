@@ -11,9 +11,11 @@ const SurfaceAR = () => {
     };
 
     useEffect(() => {
+        document.title = 'WebXR - Surface';
+
         if(arBtn){
             isHidden(arBtn.current) ? setHide(true) : setHide(false);
-        }
+        };
     }, [arBtn]);
 
     const arCheck = () => {
@@ -23,8 +25,8 @@ const SurfaceAR = () => {
     };
 
     return (
-        <div>
-            <h3 style={{textAlign: 'center'}}>Web AR - (Surface Target)</h3>
+        <div style={{textAlign: 'center'}}>
+            <h1 style={{textDecorationLine: 'underline'}}>Web AR - (Surface Target)</h1>
 
             <p>
                 <a 
@@ -36,8 +38,7 @@ const SurfaceAR = () => {
             </p>
 
             <div style={{
-                textAlign: 'center', display: 'flex', 
-                flexDirection: 'column', justifyContent: 'center'
+                display: 'flex', flexDirection: 'column', justifyContent: 'center'
             }}>
                 <model-viewer
                     poster={ARCard.img}
@@ -63,11 +64,11 @@ const SurfaceAR = () => {
                         onClick={arCheck}
                         style={{
                             position:'absolute', bottom:'7.5px', right:'7.5px', 
-                            backgroundColor:'#ffa50050', 
-                            borderRadius:'15px', color:'#282c34'
+                            backgroundColor:'#ffa50050', display: 'flex', flexDirection: 'row',
+                            borderRadius:'15px', color:'#282c34', alignItems: 'center'
                         }}
                     >
-                       <p style={{fontSize: '13px', borderRadius: '25px'}}><MdOutlineViewInAr size={30} /></p>
+                       <MdOutlineViewInAr size={25} />
                     </button>
 
                     <div slot="poster" style={{
